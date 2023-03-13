@@ -1,4 +1,13 @@
 {
+  "name": "chat-app",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "author": "lugrao",
   "dependencies": {
     "eslint": "^8.36.0",
     "eslint-config-next": "^13.2.4",
