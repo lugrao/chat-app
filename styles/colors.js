@@ -17,4 +17,5 @@ export const colors = {
   yellowDark: "#997424",
 }
 
+// Palette: https://colorhunt.co/palette/10072031087bfa2fb5ffc23c
 // Useful: https://maketintsandshades.com/
