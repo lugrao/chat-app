@@ -9,7 +9,7 @@ function Button({ children, ...props }) {
         border: `1px solid ${colors.purple}`,
         height: 40,
         width: 80,
-        padding: "10px",
+        padding: 7,
         fontSize: 16,
         border: "none",
         borderRadius: 5,
