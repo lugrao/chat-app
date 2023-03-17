@@ -1,8 +1,10 @@
+import { forwardRef } from "react"
 import { colors } from "styles/colors"
 
-function Input({ children, ...props }) {
+const Input = forwardRef(function Input({ children, ...props }, ref) {
   return (
     <input
+      ref={ref}
       css={{
         border: `1px solid ${colors.purple}`,
         borderRadius: 5,
@@ -13,6 +15,6 @@ function Input({ children, ...props }) {
       {children}
     </input>
   )
-}
+})
 
 export { Input }
