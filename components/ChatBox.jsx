@@ -1,9 +1,42 @@
+import { useState, useRef } from "react"
+import { useChannel } from "hooks/useChannel"
 import { Input } from "components/Input"
 import { Message } from "components/Message"
 import { Button } from "components/Button"
 import { colors } from "styles/colors"
 
 function ChatBox(props) {
+  const endOfMessages = useRef(null)
+  const inputElement = useRef(null)
+
+  const [message, setMessage] = useState("")
+  const [sentMessages, setSentMessages] = useState([])
+
+  const [channel, ably] = useChannel("just-chating", (msg) => {
+    const history = sentMessages.slice(-199)
+    setSentMessages([...history, msg])
+  })
+
+  function sendMessage(msg) {
+    channel.publish({ name: "chat-message", data: msg })
+    setMessage("")
+    inputElement.current.focus()
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    sendMessage(message)
+  }
+
+  const messages = sentMessages.map((msg, index) => {
+    const sentByUser = msg.connectionId === ably.connection.id
+    return (
+      <Message key={index} sentByUser={sentByUser}>
+        {msg.data}
+      </Message>
+    )
+  })
+
   return (
     <div
       css={{
@@ -18,20 +51,21 @@ function ChatBox(props) {
       }}
       {...props}
     >
-      <div css={{ maxHeight: "400px", overflow: "scroll" }}>
-        <Message sentByUser={true}>Test message 1</Message>
-        <Message sentByUser={false}>Test message 2</Message>
-        <Message sentByUser={true}>Test message 3</Message>
-        <Message sentByUser={false}>Test message 4</Message>
-        <Message sentByUser={false}>Test message 5</Message>
-        <Message sentByUser={false}>Test message 6</Message>
-        <Message sentByUser={false}>Test message 7</Message>
+      <div css={{ height: "70vh", overflow: "scroll" }}>
+        {messages}
+        <div ref={endOfMessages}></div>
       </div>
 
-      <div css={{ display: "flex", columnGap: 5 }}>
-        <Input css={{ flexGrow: 1 }} />
+      <form onSubmit={handleSubmit} css={{ display: "flex", columnGap: 5 }}>
+        <Input
+          ref={inputElement}
+          placeholder="Type something..."
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          css={{ flexGrow: 1 }}
+        />
         <Button>Send</Button>
-      </div>
+      </form>
     </div>
   )
 }
