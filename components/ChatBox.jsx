@@ -25,6 +25,7 @@ function ChatBox(props) {
 
   function handleSubmit(event) {
     event.preventDefault()
+    if (message.trim().length === 0) return
     sendMessage(message)
   }
 
