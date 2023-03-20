@@ -68,6 +68,8 @@ function ChatBox(props) {
           border: `1px solid ${colors.purpleDark}`,
           borderRadius: 5,
           padding: 10,
+          overflowX: "hidden",
+          overflowWrap: "anywhere",
         }}
       >
         {messages}
