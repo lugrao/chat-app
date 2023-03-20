@@ -1,8 +1,12 @@
+import Head from "next/head"
 import { ChatBox } from "components/ChatBox"
 
 export default function Home() {
   return (
     <>
+      <Head>
+        <link rel="shortcut icon" href="/favicon.png" />
+      </Head>
       <div
         css={{
           display: "flex",
