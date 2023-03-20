@@ -50,18 +50,26 @@ function ChatBox(props) {
   return (
     <div
       css={{
-        height: "100%",
+        width: 600,
         display: "flex",
         flexDirection: "column",
         rowGap: 10,
         border: `solid 1px ${colors.purpleDark}`,
         borderRadius: 5,
-        maxWidth: 600,
         padding: 20,
       }}
       {...props}
     >
-      <div css={{ height: "70vh", overflow: "scroll" }}>
+      <div
+        css={{
+          height: "70vh",
+          overflow: "scroll",
+          backgroundColor: colors.yellowVeryLight,
+          border: `1px solid ${colors.purpleDark}`,
+          borderRadius: 5,
+          padding: 10,
+        }}
+      >
         {messages}
         <div ref={endOfMessages}></div>
       </div>
