@@ -1,8 +1,7 @@
-html {
+html, body, #__next {
   height: 100%;
 }
 
 body {
-  height: 100%;
   font-family: Arial, Helvetica, sans-serif;
 }
