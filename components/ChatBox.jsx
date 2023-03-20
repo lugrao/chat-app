@@ -1,4 +1,4 @@
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { useChannel } from "hooks/useChannel"
 import { Input } from "components/Input"
 import { Message } from "components/Message"
@@ -16,6 +16,10 @@ function ChatBox(props) {
     const history = sentMessages.slice(-199)
     setSentMessages([...history, msg])
   })
+
+  useEffect(() => {
+    endOfMessages.current.scrollIntoView({ behaviour: "smooth" })
+  }, [sentMessages])
 
   function sendMessage(msg) {
     channel.publish({ name: "chat-message", data: msg })
