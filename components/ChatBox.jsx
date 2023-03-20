@@ -35,18 +35,9 @@ function ChatBox(props) {
 
   const messages = sentMessages.map((msg, index) => {
     const sentByUser = msg.connectionId === ably.connection.id
-    const time = new Date(msg.timestamp)
     return (
-      <Message key={index} sentByUser={sentByUser}>
+      <Message timestamp={msg.timestamp} key={index} sentByUser={sentByUser}>
         {msg.data}
-        <span
-          css={{
-            fontSize: 9,
-            paddingLeft: 5,
-          }}
-        >
-          {time.toLocaleTimeString()}
-        </span>
       </Message>
     )
   })
