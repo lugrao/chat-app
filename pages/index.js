@@ -3,7 +3,17 @@ import { ChatBox } from "components/ChatBox"
 export default function Home() {
   return (
     <>
-      <ChatBox css={{ margin: "auto " }} />
+      <div
+        css={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "100%",
+          height: "100%",
+        }}
+      >
+        <ChatBox />
+      </div>
     </>
   )
 }
