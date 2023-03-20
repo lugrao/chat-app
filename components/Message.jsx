@@ -1,6 +1,7 @@
 import { colors } from "styles/colors"
 
-function Message({ children, sentByUser, ...props }) {
+function Message({ children, sentByUser, timestamp, ...props }) {
+  const time = timestamp ? new Date(timestamp) : null
   return (
     <p
       css={{
@@ -17,6 +18,16 @@ function Message({ children, sentByUser, ...props }) {
       {...props}
     >
       {children}
+      {time && (
+        <span
+          css={{
+            fontSize: 9,
+            paddingLeft: 5,
+          }}
+        >
+          {time.toLocaleTimeString()}
+        </span>
+      )}
     </p>
   )
 }
